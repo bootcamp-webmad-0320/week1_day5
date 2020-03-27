@@ -54,7 +54,7 @@
     | .getElementsByTagName() | Nombre de etiqueta | HTMLCollection | Array de objetos con la etiqueta argumentada |
     | .getElementsByName() | Valor de `name` | HTMLCollection | Array de objetos que contengan el valor argumentado en su atributo `name` |
 
-    > <sub>**Nota**: `HTMLCollection` no dispone de método `.forEach()`, requiere copia.</sub>
+    > <sub>**Nota**: `HTMLCollection` no dispone de método `.forEach()`, requiere copia. <br>Esta puede obtenerse mediante el operador de propagación (*spread operator*): `const copyArr = [...originalArr]`</sub>
 
 - Propiedades principales de los objetos HTML:
   - `.innerText`
@@ -74,8 +74,8 @@
    - `.insertBefore()`
    - `.removeChild()`
 
-- El objeto `event` puede ser capturado en aquellas funciones que sean invocadas a raíz de un evento, pudiendo obtener el objeto en particular que la ha invocado y todas sus propiedades mediante `currentTarget`:
+- El objeto `event` puede ser capturado en aquellas funciones que sean invocadas a raíz de un evento, pudiendo evitar, entre otras cosas, el envío de un formulario:
 
   ````javascript
-  obj.onclick = e => console.log(e.currentTarget)
+  obj.onsubmit = e => e.preventDefault()
   ````
