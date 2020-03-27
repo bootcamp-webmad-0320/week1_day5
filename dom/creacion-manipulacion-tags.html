@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'
+        crossorigin='anonymous'>
+</head>
+
+<body>
+
+    <p id="first" title="Hazme click">Párrafo</p>
+    <p id="second" title="Hazme click">Párrafo</p>
+    <p id="third" title="Hazme click">Párrafo</p>
+    <p id="last" title="Hazme click">Párrafo</p>
+
+
+
+    <script>
+
+        // Manipulación de atributos
+
+        // Obtener valor de atributo
+        let paragraph = document.querySelector('#first')
+        let paragraphId = paragraph.getAttribute('title')
+        console.log('el title del párrafo 1 es:', paragraphId)
+
+        // Manipular valor de atributo
+        let paragraph2 = document.getElementById('second')
+        paragraph2.setAttribute('title', 'No! No me hagas click plz')
+
+        // Eliminar atributo
+        let paragraph3 = document.getElementById('third')
+        paragraph3.removeAttribute('title')
+
+
+
+        // Creación de elementos
+
+        // Inyectar nodo nuevo al final de un objeto DOM
+        const mainTitle = document.createElement('h1')                      // 1.-Creación elemento
+        mainTitle.innerText = "Creado dinámicamente"                        // 2.-Inserción texto / atributos / etc
+        // let text = document.createTextNode("Creado dinámicamente")       // 2.- Alternativa
+        // mainTitle.appendChild(text)
+        let parent = document.querySelector('body')                         // 4.- Seleccionar contendor
+        parent.appendChild(mainTitle)                                       // 5.- Inyectar
+
+
+        // Inyectar nodo nuevo antes de un objeto DOM
+        const mainTitle2 = document.createElement('h5')
+        mainTitle2.innerText = "Creado dinámicamente, pero un h5"
+        let sibling = document.querySelector('p')
+        parent.insertBefore(mainTitle2, sibling)
+
+
+        // Elminar nodo del DOM
+        let theParagraph = document.querySelector("#last")
+        parent.removeChild(theParagraph)
+
+    </script>
+</body>
+
+</html>

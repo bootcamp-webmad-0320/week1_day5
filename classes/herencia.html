@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Hierarchy</title>
+</head>
+
+<body>
+
+    <script>
+
+        class Person {
+
+            constructor(name, surname, age) {
+                this.name = name
+                this.surname = surname
+                this.age = age
+
+                this.userID = parseInt(Math.random() * 10000)
+                this.active = true
+            }
+
+            grow(number = 1) {
+                this.age += number
+            }
+        }
+
+        const person1 = new Person('Sara', 'Díaz', 19)
+        console.log(`La persona se llama ${person1.name} ${person1.surname}`)
+
+
+
+
+        class Player extends Person {
+
+            constructor(name, surname, age, nick, lives, cash) {
+                // El método super transfiere al constructor de la clase pader los valores argumentados
+                super(name, surname, age)
+                this.nick = nick
+                this.lives = lives
+                this.cash = cash
+                this.level = 1
+            }
+
+            spendCash(quantity) {
+                this.cash -= quantity
+            }
+
+            changeLives(number = 1) {
+                this.lives += number
+            }
+
+            passLevel() {
+                this.level++
+            }
+
+            die() {
+                this.level = 1
+            }
+        }
+
+        const player1 = new Player('Germán', 'Álvarez', 33, 'ShUmOrëniKoh_86', 10, 3000)
+        console.log(`El jugador ${player1.nick} (${player1.name}, con ID ${player1.userID}) tiene un saldo de ${player1.cash}`)
+        player1.spendCash(1200)
+        console.log(`El jugador ${player1.nick} (${player1.name}, con ID ${player1.userID}) tiene un saldo de ${player1.cash}`)
+
+
+
+
+
+
+        class Witch extends Player {
+
+            constructor(name, surname, age, nick, lives, cash) {
+                super(name, surname, age, nick, lives, cash)
+                this.role = 'bruja'
+            }
+
+            makeSpell() {
+                this.changeLives(2)
+                console.log(`¡La bruja ${this.nick} te echó un hechizo y ganó una vida! Ahora tiene ${this.lives} vidas`)
+            }
+
+        }
+
+        const witch1 = new Witch('Raúl', 'García', 22, 'Piruja_98', 10, 3000)
+        witch1.makeSpell()
+
+
+
+
+
+
+        class Gnome extends Player {
+
+            constructor(name, surname, age, nick, lives, cash) {
+                super(name, surname, age, nick, lives, cash)
+                this.role = 'enano'
+            }
+
+            spit() {
+                console.log(`¡El enano ${this.nick} te escupió! Menudo guarro...`)
+            }
+        }
+
+        const gnome1 = new Gnome('María', 'Sánchez', 45, 'David el Gnomo guarro', 10, 3000)
+        gnome1.spit()
+
+
+    </script>
+</body>
+
+</html>

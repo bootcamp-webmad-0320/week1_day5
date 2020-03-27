@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Objects</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        const person = {
+            name: 'John',
+            surname: 'Doe',
+            age: 33,
+            birth: new Date(1996, 0, 1),
+            celiac: false,
+            id: undefined,
+            hobbies: ['beer', 'programming', 'ski'],
+            address: {
+                street: 'Serrano',
+                number: '125',
+                code: '28003',
+                city: 'Madrid',
+                country: 'Madrid',
+                phone: '+3476283767'
+            },
+            subscriptions: [
+                {
+                    service: 'Netflix',
+                    price: '9.99',
+                    currency: '€'
+                },
+                {
+                    service: 'Spotify',
+                    price: '9.99',
+                    currency: '€'
+                }
+            ],
+            grow(number = 1) {          // default parameter
+                this.age += number
+            },
+            getNewHobby(hobby) {
+                this.hobbies.push(hobby)
+            },
+            changePhone(newPhone) {
+                this.phone = newPhone
+            },
+            getTotalInvoice(tax = 1) {
+                let sum = 0
+                this.subscriptions.forEach(elm => sum += Number(elm.price))
+                return (sum * tax).toFixed(2)
+            }
+        }
+
+        // Acceso getter
+        console.log(person.name)
+        console.log(person['name'])
+
+        // Iteración getter
+        person.subscriptions.forEach(elm => console.log(`La suscripción a ${elm.service} tiene un precio de ${elm.price} ${elm.currency}`))
+
+        // Acceso setter
+        person.subscriptions[0].price = '12.99'
+        person["age"] = 34
+
+        // Añadir propiedad
+        person.hair = 'brown'
+        console.log('Pelo añadido', person)
+
+        // Comprobación de existencia de propiedad
+        console.log('¿La propiedad "hair" existe en el objeto?', 'hair' in person)
+        console.log('¿La propiedad "code" existe en el objeto anidado "address"?', 'code' in person.address)
+
+        // Eliminar propiedad de objeto
+        delete person.name
+
+        // Array con propiedades
+        const propertiesArr = Object.keys(person)
+        console.log(propertiesArr)
+        propertiesArr.forEach(elm => console.log(`El valor de la propiedad ${elm} es ${person[elm]}`))
+
+        console.log('------------------')
+
+        // Bucle for ... in
+        for (let key in person) {   // key es el nombre de cada propiedad en cada iteración
+            if (typeof person[key] != 'function') {     // omisión de los métodos
+                console.log(`El valor de la propiedad ${key} es ${person[key]}`)
+            }
+        }
+
+        console.log('------------------')
+
+        // Array con  valores
+        const valuesArr = Object.values(person)
+        console.log("los valores son:", valuesArr)
+
+
+
+        /* ----- METHODS ----- */
+
+        console.log('La persona tiene', person.age, 'años')
+        person.grow()
+        console.log('La persona tiene', person.age, 'años')
+
+        person.getNewHobby('climbing')
+        console.log('La persona los hobbies:', person.hobbies)
+
+        person.changePhone('+163478367348')
+
+        const totalInvoice = person.getTotalInvoice(1.21)
+        console.log(`La persona paga al mes un total de ${totalInvoice} €`)
+
+
+
+    </script>
+</body>
+
+</html>

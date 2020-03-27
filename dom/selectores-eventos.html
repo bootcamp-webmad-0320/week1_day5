@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS DOM</title>
+</head>
+
+<body>
+
+
+    <h1 id="title1">Contenido inicial</h1>
+    <h2 id="title2">Contenido secundario</h2>
+
+    <p class="paragraph">Soy el primer párrafo</p>
+    <p class="paragraph">Soy el segundo párrafo</p>
+    <p class="paragraph">Soy un párrafo</p>
+
+    <h5 class="subtitle">Soy un subtítulo</h5>
+
+    <section class="products">
+        <h2 class="titulo-segundo" id="seconndary">Mis productos</h2>
+    </section>
+
+    <button>HAZME CLICK</button>
+    <button>HAZME CLICK</button>
+    <button>HAZME CLICK</button>
+    <button>HAZME CLICK</button>
+
+
+    <script>
+
+        // .querySelector() retorna un objeto - el primer match
+        const title = document.querySelector('#title1')
+        console.log(title)
+
+        const firstParagraph = document.querySelector('p')
+        console.log('El primer párrafo es', firstParagraph)
+
+        const lastTitle = document.querySelector('.products h2')
+        console.log('El título de la sección productos es', lastTitle)
+
+
+        // .querySelectorAll() retorna un NodeList (array) de objetos - todos los match
+        const allParagraphs = document.querySelectorAll('p')
+        console.log('Hay un total de', allParagraphs.length, 'párrafos:', allParagraphs)
+
+
+        // ---------------------------------------
+
+        // Acceso setter de propiedades (nodo)
+        console.log('Las propiedades de un nodo de HTML son:', { title })
+        title.innerHTML = 'Vengo del script, ¡merluzo!'
+        title.style.color = 'red'
+        title.style.backgroundColor = 'blue'
+        title.style.border = "2px green solid";
+        title.style.fontSize = "50px";
+        title.style.marginTop = "30px";
+        title.style.paddingBottom = "30px";
+
+
+        // Acceso setter de propiedades (NodeList)
+        allParagraphs[0].id = 'nuevoId'
+        allParagraphs[0].style.fontWeight = 900
+
+        allParagraphs.forEach(elm => {
+            elm.style.fontStyle = 'italic'
+            elm.style.color = 'red'
+        })
+
+
+        // Acceso getter de propiedades
+        console.log('la clase del título es', lastTitle.className)
+        console.log('el ID del título es', lastTitle.id)
+
+
+        // Manipulación de clases 
+        allParagraphs[1].className += ' big'        // Añadir una clase manual
+        allParagraphs[2].classList.add('nueva-clase')
+        allParagraphs[2].classList.remove('clase-a-eliminar')
+        allParagraphs[2].classList.toggle('cambiar-clase')        // cambia la clase (si la tiene, se la quita y viceversa)
+
+        // ---------------------------------------
+
+        // Interacción con evento de click
+        const firstButton = document.querySelectorAll('button')[1]
+        firstButton.onclick = () => alert("AW QUE GUAY :3")
+        console.log('Fíjate en el .onclick de este botón:', { firstButton })
+
+        // Interacción con evento de click
+        allParagraphs.forEach(elm => {
+            elm.onclick = () => {
+                alert("YAY!")
+            }
+        })
+
+        const lastButton = document.querySelectorAll('button')[3]
+        lastButton.onclick = () => {
+            title.style.textDecoration = 'underline'
+        }
+
+
+    </script>
+</body>
+
+</html>

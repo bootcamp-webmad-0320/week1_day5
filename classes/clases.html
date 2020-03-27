@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Classes</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        class Person {
+
+            constructor(par1, par2, par3, par4, par5 = false) {
+                this.name = par1
+                this.surname = par2
+                this.age = par3
+                this.hobbies = par4
+                this.celiac = par5
+
+                this.userID = parseInt(Math.random() * 10000)
+                this.active = true
+            }
+
+            grow(number = 1) {
+                this.age += number
+            }
+
+            addNewHobby(hobby) {
+                if (this.active === true) {
+                    this.hobbies.push(hobby)
+                }
+            }
+
+            toggleSubscription() {
+                this.active = !this.active
+            }
+        }
+
+        const person1 = new Person('John', 'Doe', 32, ['ski', 'beer'], true)
+        const person2 = new Person('Ger', 'Alvarez', 33, ['beer', 'beer'])
+
+        console.log(`La instancia 1 de persona responde al nombre de`, person1.name)
+
+        console.log(`La instancia 2 de persona tiene ${person2.age} años`)
+        person2.grow(-1)
+        console.log(`La instancia 2 de persona tiene ${person2.age} años`)
+        console.log(person2.userID)
+
+        console.log('La persona tiene un estado', person2.active)
+        person2.toggleSubscription()
+        console.log('La persona tiene un estado', person2.active)
+        person2.toggleSubscription()
+        console.log('La persona tiene un estado', person2.active)
+        person2.toggleSubscription()
+
+
+    </script>
+</body>
+
+</html>
