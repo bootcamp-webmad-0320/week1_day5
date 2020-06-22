@@ -1,6 +1,5 @@
 # week1_day5
 
-Vídeo de la clase disponible en [este enlace](https://zoom.us/rec/share/2ZEsJZfBqXNJftL9yWbmfaNiB4-0X6a8hihNqPIFyRki2JAoiY69Db-Bhk4u0bop)
 
 
 ## Contenidos
